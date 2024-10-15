@@ -1,7 +1,10 @@
 name: Puppeteer and Lighthouse Workflow
 
 on:
-  workflow_dispatch:  # This allows manual triggering of the workflow
+  workflow_run:
+    workflows: ["Deploy  Next.js site to Pages"]
+    types:
+        - completed
  
 jobs:
   build:
