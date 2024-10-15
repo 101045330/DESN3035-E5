@@ -1,0 +1,25 @@
+name: Puppeteer and Lighthouse Workflow
+
+on:
+  workflow_dispatch:  # This allows manual triggering of the workflow
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can change this to another OS if necessary
+ 
+    steps:
+    # Step 1: Checkout the repository content
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run main.mjs script
+      run: node scripts/main.mjs
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: workflow-artifacts
+        path: ./  # You can specify the exact directory/files to archive, e.g., 'dist/', 'logs/', etc.
